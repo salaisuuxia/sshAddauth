@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $1 ]
+  then
+    if [ $2 ]
+      then
+        port=$2
+    else
+     port="22"
+    fi
+        ssh $1 -p$port "mkdir ~/.ssh;echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys" 
+        ssh $1 -p$port "echo 'sucessfully added public key.'"
+else
+  echo "usage: $0 <remote host address> [ <port> ]"
+fi
+
